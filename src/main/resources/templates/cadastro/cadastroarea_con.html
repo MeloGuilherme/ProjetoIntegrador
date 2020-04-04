@@ -23,14 +23,14 @@
 	<h1>Tela de Cadastro de Area de Conhecimento</h1>
 	<h6>Spring Boot + Thymeleaf + Materialize CSS</h6>
 	<br />
-	<a class="waves-effect waves-light btn"
-						href="/logout"> SAIR DO SISTEMA </a>
+	<a class="waves-effect waves-light btn" href="/logout"> SAIR DO
+		SISTEMA </a>
 	<br />
 	<br />
 
 	<div class="row">
 		<form action="salvararea_con" id="formarea_con" method="post"
-			th:object="${area_conobj}" class="col s12">
+			th:object="${area_conobj}" class="col s12" onsubmit="return validarCampos()? true : false">
 			<!-- post igual como foi mapeado -->
 
 			<div class="row">
@@ -47,16 +47,15 @@
 			<div class="row">
 				<div class="input-field col s12">
 					<label for="descricao" class="active"> Descricao: </label> <input
-						name="descricao" th:field="*{descricao}" id="descricao" class="validate">
+						name="descricao" th:field="*{descricao}" id="descricao"
+						class="validate">
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="input-field col s6">
 					<input class="waves-effect waves-light btn" type="submit"
-						value="Salvar">
-
-					<a class="waves-effect waves-light btn"
+						value="Salvar"> <a class="waves-effect waves-light btn"
 						href="/cadastroarea_con"> Cancelar </a>
 				</div>
 			</div>
@@ -111,6 +110,30 @@
 	<!--JavaScript at end of body for optimized loading-->
 	<script type="text/javascript" src="/materialize/js/materialize.js"></script>
 	<script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
+
+	<script type="text/javascript">
+
+	function validarCampos(){
+
+		nome = document.getElementById('nome').value;
+		descricao = document.getElementById('descricao').value;
+
+		if(nome === ''){
+
+			alert('O Nome deve ser informado.');
+			return false;
+		}
+
+		else if(descricao === '') {
+
+			alert('A Descrição deve ser informada.');
+			return false;
+		}
+
+		return true;
+	}
+
+	</script>
 
 </body>
 </html>
