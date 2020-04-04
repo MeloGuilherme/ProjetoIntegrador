@@ -23,9 +23,6 @@
 	<h1>Tela de Cadastro de Area de Conhecimento</h1>
 	<h6>Spring Boot + Thymeleaf + Materialize CSS</h6>
 	<br />
-	<a class="waves-effect waves-light btn"
-						href="/logout"> SAIR DO SISTEMA </a>
-	<br />
 	<br />
 
 	<div class="row">
@@ -56,8 +53,9 @@
 					<input class="waves-effect waves-light btn" type="submit"
 						value="Salvar">
 
-					<a class="waves-effect waves-light btn"
-						href="/cadastroarea_con"> Cancelar </a>
+					<button class="waves-effect waves-light btn"
+						onclick="document.getElementById('formarea_con').reset();">
+						Limpar</button>
 				</div>
 			</div>
 
