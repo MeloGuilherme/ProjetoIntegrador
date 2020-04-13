@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Status</title>
+
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+
+<!--Import materialize.css-->
+<link type="text/css" rel="stylesheet"
+	href="/materialize/css/materialize.min.css" media="screen,projection" />
+
+<!--Import materialize.min.css-->
+<link type="text/css" rel="stylesheet"
+	href="/materialize/css/materialize.min.css" media="screen,projection" />
+
+</head>
+<body>
+
+	<div class="row">
+		<div class="col 12">
+			<h1>Tela de Cadastro de Status</h1>
+			<a class="waves-effect waves-light btn" href="/">Retornar ao Menu</a>
+			<a class="waves-effect waves-light btn" href="/logout">Sair do Sistema</a>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="input-field col s12">
+			<hr />
+		</div>
+	</div>
+
+	<br />
+
+	<div class="row">
+		<form action="salvarstatus" id="formstatus" method="post"
+			th:object="${statusobj}" class="col s12" onsubmit="return validarCampos()? true : false">
+			<!-- post igual como foi mapeado -->
+
+			<div class="row">
+				<div class="input-field col s2">
+					<label for="id" class="active">ID: </label> <input name="id"
+						th:field="*{id}" id="id" readonly="readonly" class="validate">
+				</div>
+				<div class="input-field col s6">
+					<label for="nome" class="active"> Nome: </label> <input name="nome"
+						th:field="*{nome}" id="nome" class="validate">
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="input-field col s6">
+					<input class="waves-effect waves-light btn" type="submit"
+						value="Salvar"> <a class="waves-effect waves-light btn"
+						href="/cadastro_status"> Cancelar </a>
+				</div>
+			</div>
+
+		</form>
+	</div>
+
+	<br />
+	<br />
+
+	<div class="row">
+		<form action="pesquisarstatus" method="post" class="col s12">
+			<div class="row">
+				<div class="input-field col s12">
+					<label for="nomepesquisa" class="active"> Pesquisar por
+						nome: </label> <input name="nomepesquisa" id="nomepesquisa"
+						class="validate"> <input
+						class="waves-effect waves-light btn" type="submit"
+						value="Pesquisar"> <a class="waves-effect waves-light btn"
+						href="/listastatus"> Lista de Status </a>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<table class="striped">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Nome</th>
+				<th>Editar</th>
+				<th>Excluir</th>
+			</tr>
+		</thead>
+
+		<tr th:each="status : ${statuss}">
+
+			<td th:text="${status.id}"></td>
+			<td th:text="${status.nome}"></td>
+			<td><a
+				th:href="@{/editarstatus/{idstatus}(idstatus=${status.id})}">
+					Editar </a></td>
+			<td><a
+				th:href="@{/removerstatus/{idstatus}(idstatus=${status.id})}">
+					Excluir </a></td>
+		</tr>
+
+	</table>
+
+	<!--JavaScript at end of body for optimized loading-->
+	<script type="text/javascript" src="/materialize/js/materialize.js"></script>
+	<script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
+
+	<script type="text/javascript">
+
+	function validarCampos(){
+
+		nome = document.getElementById('nome').value;
+
+		if(nome === ''){
+
+			alert('O Nome deve ser informado.');
+			return false;
+		}
+
+		return true;
+	}
+
+	</script>
+
+</body>
+</html>
