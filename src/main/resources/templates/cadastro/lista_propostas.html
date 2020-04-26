@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Lista de Propostas</title>
+
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+
+<!--Import materialize.css-->
+<link type="text/css" rel="stylesheet"
+	href="/materialize/css/materialize.min.css" media="screen,projection" />
+
+<!--Import materialize.min.css-->
+<link type="text/css" rel="stylesheet"
+	href="/materialize/css/materialize.min.css" media="screen,projection" />
+
+</head>
+<body>
+
+	<div class="row">
+		<div class="col 12">
+			<h1>Tela de Lista de Proposta</h1>
+			<a class="waves-effect waves-light btn" href="/">Retornar ao Menu</a>
+			<a class="waves-effect waves-light btn" href="/logout">SAIR DO SISTEMA</a>
+		</div>
+	</div>
+	
+	<br />
+
+	<div class="row">
+		<form action="pesquisarpropostas" method="post" class="col s12">
+			<div class="row">
+				<div class="input-field col s12">
+					<label for="titulopesquisa" class="active"> Pesquisar por
+						título: </label> <input name="titulopesquisa" id="titulopesquisa"
+						class="validate"> <input
+						class="waves-effect waves-light btn" type="submit"
+						value="Pesquisar"> <a class="waves-effect waves-light btn"
+						href="/listatodaspropostas"> Lista de Propostas </a>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<table class="striped">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Título</th>
+				<th>Descricao</th>
+				<th>Editar</th>
+				<th>Excluir</th>
+			</tr>
+		</thead>
+
+		<tr th:each="proposta : ${propostas}">
+
+			<td th:text="${proposta.id}"></td>
+			<td th:text="${proposta.titulo}"></td>
+			<td th:text="${proposta.descricao}"></td>
+			<td><a
+				th:href="@{/editarprop/{idprop}(idprop=${proposta.id})}">
+					Editar </a></td>
+			<td><a
+				th:href="@{/removerprop/{idprop}(idprop=${proposta.id})}">
+					Excluir </a></td>
+		</tr>
+
+	</table>
+
+	<!--JavaScript at end of body for optimized loading-->
+	<script type="text/javascript" src="/materialize/js/materialize.js"></script>
+	<script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
+
+</body>
+</html>
